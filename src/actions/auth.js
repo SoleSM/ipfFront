@@ -1,64 +1,57 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { fetchSinToken } from '../helpers/fetch';
+
 import {
     LOGIN_FAIL,
     LOGIN_OKAY,
-    AUTH_ERROR
+    USER_LOADING,
+    LOGOUT
 } from './types';
-import setAuthToken from '../utils/setAuthToken';
 
-export const login = (email, password) => async dispatch => {
-    
+export const fetchUsuarioLoading = () => {
+    return{
+        type: USER_LOADING
+    }
+}
 
-    const body = JSON.stringify({email, password})
+export const fetchLoginOkay = (user) => {
+    return{
+        type: LOGIN_OKAY,
+        payload: user
+    }
+}
 
-    //console.info('body=>',body)
+export const fetchLoginError = (error) => {
+    return{
+        type: LOGIN_FAIL,
+        payload: error
+    }
+}
 
-    try {
-        const res = await axios.post('localhost:5000/user/login', body)
+export const login = (email, password) => {
 
-        console.log(res.data)
-
-        dispatch({
-            type: LOGIN_OKAY,
-            payload: res.data
-        })
-
-        dispatch(loadUser())
+    return async( dispatch ) => {
         
-    } catch (err) {
+        const res = await fetchSinToken('user/login',{email, password}, 'POST');
+        const body = await res.json()
 
-        const errors = err.response.data.errors
+        
+        if(body.ok){
 
-        if(errors){
-            console.log(errors)
+            //graba el token con el token que viene en el body
+            localStorage.setItem('token', body.token)
+            localStorage.setItem('token-creado', new Date().getTime())
+
+            dispatch( fetchLoginOkay({
+                uid: body.user.uid,
+                nombre: body.user.nombre
+            }))
+
+         
+        }else{
+            return Swal.fire('Error', body.msg, 'error')
         }
-        
-        dispatch({
-            type: LOGIN_FAIL
-        })
     }
 }
 
-
-
-export const loadUser = () => async dispatch => {
-
-    if(localStorage.token) {
-        setAuthToken(localStorage.token)
-    }
-
-    try {
-        
-        const res = await axios.get('localhost:5000/user/login')
-
-        dispatch({
-            type: USER_LOADED,
-            payload: res.data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: AUTH_ERROR
-        })
-    }
-}

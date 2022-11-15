@@ -14,7 +14,10 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "styled-components": "^5.3.6",
+    "sweetalert2": "^11.6.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

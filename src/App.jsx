@@ -1,12 +1,16 @@
-import Login from "./components/auth/login"
+import Login from "./components/auth/login";
+import { Provider } from 'react-redux';
+import Store from "./store";
 
 function App() {
-  
+
   return (
-  <>
-    <h1>hola</h1>
-    <Login/>
-  </>
+
+    <Provider store={Store}>
+      <Login />
+    </Provider>
+
+
   )
 }
 
