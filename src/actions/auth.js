@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useHref } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { fetchSinToken } from '../helpers/fetch';
 
@@ -34,23 +35,27 @@ export const login = (email, password) => {
     return async( dispatch ) => {
         
         const res = await fetchSinToken('user/login',{email, password}, 'POST');
+        dispatch(fetchUsuarioLoading())
         const body = await res.json()
 
+        
         
         if(body.ok){
 
             //graba el token con el token que viene en el body
             localStorage.setItem('token', body.token)
             localStorage.setItem('token-creado', new Date().getTime())
-
+            window.location.href= '/Home'
             dispatch( fetchLoginOkay({
                 uid: body.user.uid,
                 nombre: body.user.nombre
             }))
-
-         
+ 
         }else{
+            dispatch(fetchLoginError(body.msg))
             return Swal.fire('Error', body.msg, 'error')
+
+            
         }
     }
 }

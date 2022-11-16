@@ -1,36 +1,23 @@
-import { useForm } from '../../hooks/useForm'
+import styled from 'styled-components';
+import imagenLogo from '../../assets/logo.png';
+import { useForm } from '../../hooks/useForm';
 import { connect } from 'react-redux';
-import { login } from '../../actions/auth'
-import styled from 'styled-components'
+import { login } from '../../actions/auth';
 
-const ContainerPrincipal = styled.div`
-    min-height: 100vh;
-    background-color: white
+const Banner = styled.div`
+    background-color: #673ab7;
+    height: 370px;
+    margin-top: -45px
 `;
-
-const ContainerForm = styled.div`
-    height: 70%;
-    width: 50%;
-    background-color: white;
-    border-radius: 30px;
-    margin: auto;
-`;
-
 const Title = styled.h1`
-  text-align: center;
-  color: black;
-  font-family: Cambria;
-  padding: 20px;
-  font-weight: bold;
-  font-size: 40px;
-  @media screen and (max-width: 900px){
-    font-size: 30px;
-    text-align: center;
-  }
+    font-family: Candara;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    color: white;
+    font-size: 50px;
 `;
-
-const Login = ({ login }) => {
-
+const Login = ({login}) => {
 
     const [formLoginValues, handleInputChange] = useForm({
         loginEmail: 'miliserrrano@gmail.com',
@@ -46,42 +33,63 @@ const Login = ({ login }) => {
 
     return (
         <>
-            <ContainerPrincipal>
-                <ContainerForm style={{}}>
-                    <Title>Login</Title>
-                    <form className="form" onSubmit={(e) => handleOnSubmit(e)} style={{'textAlign':'center'}}>
+            <section className="text-center">
 
-                        <div className="form-group">
-                            <input type="email"
-                                placeholder="correo electrónico/email"
-                                name="loginEmail"
-                                value={loginEmail}
-                                onChange={handleInputChange}
-                                style={{'borderRadius': 'px', 'borderBlock': 'none',}}
-                            />
+                <Banner>
+                    <Title>Instituto Random</Title>
+                    <img src={imagenLogo} height="200px" />
+                </Banner>
+
+                <div style={{ 'justifyContent': 'center', 'display': 'flex'}}>
+                    <div className="card mx-4 mx-md-5 shadow-5-strong" style={{
+                        'marginTop': '-100px',
+                        'background': ' hsla(0, 0%, 100%, 0.8)',
+                        'backdropFilter': 'blur(30px)',
+                        'width': '50%',
+                        'borderRadius':'20px',
+                    }}>
+                        <div className="card-body py-5 px-md-5">
+
+                            <div className="row d-flex justify-content-center">
+                                <div className="col-lg-8">
+                                    <h2 className="fw-bold mb-5" style={{ 'fontFamily': 'Candara', 'fontWeight': 'bolder' }}>LOGIN</h2>
+
+                                    <form onSubmit={(e) => handleOnSubmit(e)} >
+                                        <div className="form-outline mb-4" style={{ 'textAlign': 'left', 'alignItems': 'left' }}>
+                                            <input type="email"
+                                                name="loginEmail"
+                                                value={loginEmail}
+                                                onChange={handleInputChange}
+                                                className="form-control"
+                                            />
+                                            <label className="form-label" for="form3Example3" style={{'fontFamily': 'Candara'}}>Email</label>
+                                        </div>
+
+                                        <div className="form-outline mb-4" style={{ 'textAlign': 'left', 'alignItems': 'left' }}>
+                                            <input type="password"
+                                                name="loginPassword"
+                                                value={loginPassword}
+                                                onChange={handleInputChange} 
+                                                className="form-control"
+                                            />
+                                            <label className="form-label" for="form3Example4" style={{'fontFamily': 'Candara'}}>Contraseña</label>
+                                        </div>
+
+                                        <div style={{ 'justifyContent': 'center', 'display': 'flex'}}>
+                                            <button type="submit" className="btn btn-primary btn-block mb-4" style={{ 'width': '50%', 'borderRadius': '10px', 'fontFamily': 'Candara'}}>
+                                                Iniciar Sesion
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+                    </div>
 
-                        <div className="form-group">
-                            <input type="password"
-                                placeholder="correo electrónico/email"
-                                name="loginPassword"
-                                value={loginPassword}
-                                onChange={handleInputChange}
-                            />
-                        </div>
+                </div>
 
-                        <div className="centered">
-                            <input type="submit"
-                                className="button3d"
-                                value="pulse para iniciar sesión_"
-                            />
-                        </div>
-
-                    </form>
-                </ContainerForm>
-            </ContainerPrincipal>
-
-
+            </section>
         </>
     )
 }
