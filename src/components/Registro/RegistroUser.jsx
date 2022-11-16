@@ -16,17 +16,23 @@ const Botones = styled.div`
 
 const RegistroUsuario = () => {
 
-    // const [formLoginValues, handleInputChange] = useForm({
-    //     loginEmail: 'miliserrrano@gmail.com',
-    //     loginPassword: 'hola123'
-    // });
+    const [formRegisterValues, handleInputChange] = useForm({
+       rNombre : "",
+       rApellido: "",
+       rDni: "",
+       rFechaNacimiento: null,
+       rEmail: "",
+       rPassword: "",
+       rGenero: null,
+       rTipoUser: null
+    });
 
-    // const { loginEmail, loginPassword } = formLoginValues;
+    const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser} = formRegisterValues;
 
-    // const handleOnSubmit = async (e) => {
-    //     e.preventDefault()
-    //     login(loginEmail, loginPassword)
-    // }
+    const handleOnSubmit = async (e) => {
+        e.preventDefault()
+        
+    }
 
     return (
         <>
@@ -38,16 +44,26 @@ const RegistroUsuario = () => {
                             <div className="card shadow-2-strong card-registration" style={{ "borderRadius": "15px" }}>
                                 <div className="card-body p-4 p-md-5">
                                     <Title>Registro de usuarios</Title>
-                                    <form>
+                                    <form  onSubmit={(e)=> handleInputChange(e)}>
                                         <div className="col s12">
+
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="text" id="autocomplete-input" className="autocomplete" />
+                                                    <input type="text" 
+                                                    id="autocomplete-input"
+                                                    className="autocomplete"
+                                                    name="rNombre"
+                                                    value={rNombre}
+                                                     />
                                                     <label for="autocomplete-input">Nombre</label>
                                                 </div>
 
                                                 <div className="input-field col s12">
-                                                    <input type="text" id="autocomplete-input" className="autocomplete" />
+                                                    <input type="text" 
+                                                    id="autocomplete-input" 
+                                                    className="autocomplete"
+                                                    name='rApellido' 
+                                                    value={rApellido}/>
                                                     <label for="autocomplete-input">Apellido</label>
                                                 </div>
                                             </div>
@@ -55,31 +71,49 @@ const RegistroUsuario = () => {
 
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="number" id="autocomplete-input" className="autocomplete" />
+                                                    <input type="number" 
+                                                    id="autocomplete-input" 
+                                                    className="autocomplete" 
+                                                    name='rDni'
+                                                    value={rDni}/>
                                                     <label for="autocomplete-input">DNI</label>
                                                 </div>
 
                                                 <div className="input-field col s12">
-                                                    <input type="date" id="autocomplete-input" className="autocomplete" />
+                                                    <input type="date"
+                                                     id="autocomplete-input"
+                                                      className="autocomplete"
+                                                      name='rFechaNacimiento'
+                                                      value={rFechaNacimiento} />
                                                     <label for="autocomplete-input">Fecha de nacimiento</label>
                                                 </div>
                                             </div>
 
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="number" id="autocomplete-input" className="autocomplete" />
+                                                    <input type="number"
+                                                     id="autocomplete-input"
+                                                      className="autocomplete"
+                                                      name='rEmail' 
+                                                      value={rEmail}/>
                                                     <label for="autocomplete-input">Email</label>
                                                 </div>
 
                                                 <div className="input-field col s12">
-                                                    <input type="text" id="autocomplete-input" className="autocomplete" />
+                                                    <input type="text"
+                                                     id="autocomplete-input"
+                                                     className="autocomplete"
+                                                     name='rPassword'
+                                                     value={rPassword}/>
                                                     <label for="autocomplete-input">Contraseña</label>
                                                 </div>
                                             </div>
 
 
                                             <label for="autocomplete-input">Género</label>
-                                            <select class="browser-default" style={{ 'width': '50%' }}>
+                                            <select class="browser-default" 
+                                            style={{ 'width': '50%' }}
+                                            name="rGenero">
                                                 <option value="" disabled selected>Elige una opción</option>
                                                 <option value="femenino">Femenino</option>
                                                 <option value="masculino">Masculino</option>
@@ -87,7 +121,9 @@ const RegistroUsuario = () => {
                                             </select>
 
                                             <label for="autocomplete-input">Tipo de usuario</label>
-                                            <select class="browser-default" style={{ 'width': '50%' }}>
+                                            <select class="browser-default" 
+                                            style={{ 'width': '50%' }}
+                                            name="rTipoUser">
                                                 <option value="" disabled selected>Elige una opción</option>
                                                 <option value="profesor">Profesor</option>
                                                 <option value="alumno">Alumno</option>
