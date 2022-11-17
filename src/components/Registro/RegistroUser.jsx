@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { useForm } from '../../hooks/useForm';
+import { connect } from 'react-redux';
+import { fetchRegisterUser } from '../../redux/actions/register';
 
 const Title = styled.h3`
     font-family: Candara;
@@ -8,30 +11,28 @@ const Title = styled.h3`
     margin-top: 2%
 `;
 const Botones = styled.div`
-   
     margin-top: 10%;
-    
-    
 `;
 
-const RegistroUsuario = () => {
+const RegistroUsuario = ({fetchRegisterUser}) => {
 
     const [formRegisterValues, handleInputChange] = useForm({
-       rNombre : "",
-       rApellido: "",
-       rDni: "",
-       rFechaNacimiento: null,
-       rEmail: "",
-       rPassword: "",
-       rGenero: null,
-       rTipoUser: null
+        rNombre: "",
+        rApellido: "",
+        rDni: "",
+        rFechaNacimiento: "",
+        rEmail: "",
+        rPassword: "",
+        rGenero: "",
+        rTipoUser: ""
     });
 
-    const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser} = formRegisterValues;
+    const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser } = formRegisterValues;
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
-        
+        console.log(formRegisterValues)
+        fetchRegisterUser(rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser)
     }
 
     return (
@@ -44,26 +45,29 @@ const RegistroUsuario = () => {
                             <div className="card shadow-2-strong card-registration" style={{ "borderRadius": "15px" }}>
                                 <div className="card-body p-4 p-md-5">
                                     <Title>Registro de usuarios</Title>
-                                    <form  onSubmit={(e)=> handleInputChange(e)}>
+                                    <form onSubmit={ handleOnSubmit}>
                                         <div className="col s12">
 
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="text" 
-                                                    id="autocomplete-input"
-                                                    className="autocomplete"
-                                                    name="rNombre"
-                                                    value={rNombre}
-                                                     />
+                                                    <input type="text"
+                                                        id="autocomplete-input"
+                                                        className="autocomplete"
+                                                        name="rNombre"
+                                                        value={rNombre}
+                                                        onChange={handleInputChange}
+                                                    />
                                                     <label for="autocomplete-input">Nombre</label>
                                                 </div>
 
                                                 <div className="input-field col s12">
-                                                    <input type="text" 
-                                                    id="autocomplete-input" 
-                                                    className="autocomplete"
-                                                    name='rApellido' 
-                                                    value={rApellido}/>
+                                                    <input type="text"
+                                                        id="autocomplete-input"
+                                                        className="autocomplete"
+                                                        name='rApellido'
+                                                        value={rApellido}
+                                                        onChange={handleInputChange}
+                                                    />
                                                     <label for="autocomplete-input">Apellido</label>
                                                 </div>
                                             </div>
@@ -71,60 +75,72 @@ const RegistroUsuario = () => {
 
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="number" 
-                                                    id="autocomplete-input" 
-                                                    className="autocomplete" 
-                                                    name='rDni'
-                                                    value={rDni}/>
+                                                    <input type="number"
+                                                        id="autocomplete-input"
+                                                        className="autocomplete"
+                                                        name='rDni'
+                                                        value={rDni}
+                                                        onChange={handleInputChange}
+                                                    />
                                                     <label for="autocomplete-input">DNI</label>
                                                 </div>
 
                                                 <div className="input-field col s12">
                                                     <input type="date"
-                                                     id="autocomplete-input"
-                                                      className="autocomplete"
-                                                      name='rFechaNacimiento'
-                                                      value={rFechaNacimiento} />
+                                                        id="autocomplete-input"
+                                                        className="autocomplete"
+                                                        name='rFechaNacimiento'
+                                                        value={rFechaNacimiento}
+                                                        onChange={handleInputChange}
+                                                    />
                                                     <label for="autocomplete-input">Fecha de nacimiento</label>
                                                 </div>
                                             </div>
 
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="number"
-                                                     id="autocomplete-input"
-                                                      className="autocomplete"
-                                                      name='rEmail' 
-                                                      value={rEmail}/>
+                                                    <input type="email"
+                                                        id="autocomplete-input"
+                                                        className="autocomplete"
+                                                        name='rEmail'
+                                                        value={rEmail}
+                                                        onChange={handleInputChange}
+                                                    />
                                                     <label for="autocomplete-input">Email</label>
                                                 </div>
 
                                                 <div className="input-field col s12">
                                                     <input type="text"
-                                                     id="autocomplete-input"
-                                                     className="autocomplete"
-                                                     name='rPassword'
-                                                     value={rPassword}/>
+                                                        id="autocomplete-input"
+                                                        className="autocomplete"
+                                                        name='rPassword'
+                                                        value={rPassword}
+                                                        onChange={handleInputChange}
+                                                    />
                                                     <label for="autocomplete-input">Contraseña</label>
                                                 </div>
                                             </div>
 
 
                                             <label for="autocomplete-input">Género</label>
-                                            <select class="browser-default" 
-                                            style={{ 'width': '50%' }}
-                                            name="rGenero">
-                                                <option value="" disabled selected>Elige una opción</option>
+                                            <select className="browser-default"
+                                                style={{ 'width': '50%' }}
+                                                name="rGenero"
+                                                onChange={handleInputChange}
+                                            >
+                                                <option>Elige una opción</option>
                                                 <option value="femenino">Femenino</option>
                                                 <option value="masculino">Masculino</option>
                                                 <option value="otro">Otro</option>
                                             </select>
 
                                             <label for="autocomplete-input">Tipo de usuario</label>
-                                            <select class="browser-default" 
-                                            style={{ 'width': '50%' }}
-                                            name="rTipoUser">
-                                                <option value="" disabled selected>Elige una opción</option>
+                                            <select className="browser-default"
+                                                style={{ 'width': '50%' }}
+                                                name="rTipoUser"
+                                                onChange={handleInputChange}
+                                            >
+                                                <option>Elige una opción</option>
                                                 <option value="profesor">Profesor</option>
                                                 <option value="alumno">Alumno</option>
                                                 <option value="admin">Administrador</option>
@@ -132,14 +148,14 @@ const RegistroUsuario = () => {
 
                                         </div>
 
-                                            <button class="btn waves-effect  green darken-1  col s6" type="submit" name="action" style={{'width': '49%', 'marginTop': '5%'}}>Submit
-                                                <i class="material-icons right">send</i>
-                                            </button>
+                                        <button className="btn waves-effect  green darken-1  col s6" type="submit" name="action" style={{ 'width': '49%', 'marginTop': '5%' }}>Submit
+                                            <i className="material-icons right">send</i>
+                                        </button>
 
-                                            <button class="btn waves-effect amber col s6" type="submit" name="action" style={{'width': '49%', 'marginTop': '5%'}}>Limpiar Campos
-                                                <i class="material-icons right">delete</i>
-                                            </button>
-                                       
+                                        <button className="btn waves-effect amber col s6" type="submit" name="action" style={{ 'width': '49%', 'marginTop': '5%' }}>Limpiar Campos
+                                            <i className="material-icons right">delete</i>
+                                        </button>
+
                                     </form>
                                 </div>
                             </div>
@@ -152,4 +168,9 @@ const RegistroUsuario = () => {
     )
 }
 
-export default RegistroUsuario;
+const mapStateToProps = state => ({
+
+    user: state.register.user
+
+})
+export default connect(mapStateToProps, {fetchRegisterUser})(RegistroUsuario);

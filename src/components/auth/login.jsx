@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import imagenLogo from '../../assets/logo.png';
 import { useForm } from '../../hooks/useForm';
 import { connect } from 'react-redux';
-import { login } from '../../actions/auth';
+import { login } from '../../redux/actions/auth';
 
 const Banner = styled.div`
     background-color: #673ab7;
