@@ -19,12 +19,21 @@ export const fetchRegFail = (error) => {
     }
 }
 
+<<<<<<< HEAD
 export const fetchRegisterUser = (nombre, apellido, numeroDni, sexo, fechaDeNacimiento, email, password, tipo) => {
+=======
+export const fetchRegisterUser = (nombre, apellido, numeroDni, fechaDeNacimiento, email, password, sexo, tipo) => {
+>>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
 
     return async (dispatch) => {
 
+<<<<<<< HEAD
         console.log("llego al action")
         const res = await fetchSinToken('user/newUser', { nombre, apellido, numeroDni, sexo, fechaDeNacimiento, email, password, tipo }, 'POST');
+=======
+        console.log("datos", numeroDni)
+        const res = await fetchSinToken('user/newUser', {nombre, apellido, numeroDni, fechaDeNacimiento, email, password, sexo, tipo}, 'POST');
+>>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
         const body = await res.json();
 
         console.log("body desde el action=> ", body)

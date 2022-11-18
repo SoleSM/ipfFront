@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { useForm } from '../../hooks/useForm';
 import { fetchRegisterUser } from '../../redux/actions/register';
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
+=======
+import { useDispatch } from 'react-redux'
+>>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
 
 const Title = styled.h3`
     font-family: Candara;
@@ -14,9 +18,17 @@ const Botones = styled.div`
     margin-top: 10%;
 `;
 
+<<<<<<< HEAD
 const RegistroUsuario = () => {
 
     const dispatch = useDispatch();
+=======
+
+
+const RegistroUsuario = ({fetchRegisterUser}) => {
+>>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
+
+    const dispatch = useDispatch()
 
     const [formRegisterValues, handleInputChange] = useForm({
         rNombre: "Soledad",
@@ -29,11 +41,22 @@ const RegistroUsuario = () => {
         rTipoUser: "alumno"
     });
 
+<<<<<<< HEAD
     const { rNombre, rApellido, rDni, rGenero, rFechaNacimiento, rEmail, rPassword, rTipoUser } = formRegisterValues;
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
         dispatch(fetchRegisterUser(rNombre, rApellido, rDni, rGenero, rFechaNacimiento, rEmail, rPassword, rTipoUser))
+=======
+   
+    const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser } = formRegisterValues;
+
+    const handleOnSubmit = async (e) => {
+        e.preventDefault()
+        console.log(formRegisterValues)
+        dispatch(fetchRegisterUser(rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser))
+       
+>>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
     }
 
     return (
