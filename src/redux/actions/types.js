@@ -1,5 +1,5 @@
 export const REGISTER_OKAY = 'REGISTER_OKAY'
-export const REGISTER_FAIL = 'REGISTER_OKAY'
+export const REGISTER_FAIL = 'REGISTER_FAIL'
 
 export const USER_LOADING = 'USER_LOADING'
 export const LOGIN_OKAY = 'LOGIN_OKAY'

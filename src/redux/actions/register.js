@@ -6,42 +6,45 @@ import {
 import Swal from 'sweetalert2'
 
 export const fetchRegOkay = (user) => {
-    return{
+    return {
         type: REGISTER_OKAY,
         payload: user
     }
 }
 
 export const fetchRegFail = (error) => {
-    return{
+    return {
         type: REGISTER_FAIL,
         payload: error
     }
 }
 
-export const fetchRegisterUser = ( nombre, apellido, dni, fechaNacimiento, email, password, genero, tipoUser ) => {
+export const fetchRegisterUser = (nombre, apellido, numeroDni, sexo, fechaDeNacimiento, email, password, tipo) => {
 
-    return async(dispatch) => {
+    return async (dispatch) => {
 
-        const res = await fetchSinToken('user/newUser', {nombre, apellido, dni, fechaNacimiento, email, password, genero, tipoUser}, 'POST');
+        console.log("llego al action")
+        const res = await fetchSinToken('user/newUser', { nombre, apellido, numeroDni, sexo, fechaDeNacimiento, email, password, tipo }, 'POST');
         const body = await res.json();
 
-        console.log("body",body)
-        if(body.ok){
+        console.log("body desde el action=> ", body)
 
+        if (body.ok) {
+            console.log("ok")
             //graba el token con el token que viene en el body
             localStorage.setItem('token', body.token)
             localStorage.setItem('token-creado', new Date().getTime())
-        
-            dispatch( fetchRegOkay({
-                uid: body.user.uid
+
+            dispatch(fetchRegOkay({
+                uid: body.usuario.uid,
+                nombre: body.usuario.nombre
             }))
- 
-        }else{
+
+        } else {
+            console.log("entro a error")
             dispatch(fetchRegFail(body.msg))
             return Swal.fire('Error', body.msg, 'error')
 
-            
         }
     }
 }

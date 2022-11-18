@@ -5,7 +5,7 @@ import {
 
 const initialState = {
 
-    user: [],
+    user: {},
     error: ''
 }
 
@@ -15,6 +15,7 @@ const RegisterReducer = (state = initialState, action) => {
 
     switch(type){
         case REGISTER_OKAY:
+           console.log("etate",state)
             return{
                 ...state,
                 user: payload,
@@ -23,7 +24,7 @@ const RegisterReducer = (state = initialState, action) => {
         case REGISTER_FAIL:
             return{
                 ...state,
-                user: [],
+                user: {},
                 error: payload
             }
         default: return state;

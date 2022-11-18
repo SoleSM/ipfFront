@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useForm } from '../../hooks/useForm';
-import { connect } from 'react-redux';
 import { fetchRegisterUser } from '../../redux/actions/register';
+import { useDispatch } from 'react-redux';
 
 const Title = styled.h3`
     font-family: Candara;
@@ -14,25 +14,26 @@ const Botones = styled.div`
     margin-top: 10%;
 `;
 
-const RegistroUsuario = ({fetchRegisterUser}) => {
+const RegistroUsuario = () => {
+
+    const dispatch = useDispatch();
 
     const [formRegisterValues, handleInputChange] = useForm({
-        rNombre: "",
-        rApellido: "",
-        rDni: "",
+        rNombre: "Soledad",
+        rApellido: "Serrano",
+        rDni: "45325",
+        rGenero: "Femenino",
         rFechaNacimiento: "",
-        rEmail: "",
-        rPassword: "",
-        rGenero: "",
-        rTipoUser: ""
+        rEmail: "miliss@gmail.com",
+        rPassword: "qwerty12345",
+        rTipoUser: "alumno"
     });
 
-    const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser } = formRegisterValues;
+    const { rNombre, rApellido, rDni, rGenero, rFechaNacimiento, rEmail, rPassword, rTipoUser } = formRegisterValues;
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
-        console.log(formRegisterValues)
-        fetchRegisterUser(rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser)
+        dispatch(fetchRegisterUser(rNombre, rApellido, rDni, rGenero, rFechaNacimiento, rEmail, rPassword, rTipoUser))
     }
 
     return (
@@ -45,7 +46,7 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
                             <div className="card shadow-2-strong card-registration" style={{ "borderRadius": "15px" }}>
                                 <div className="card-body p-4 p-md-5">
                                     <Title>Registro de usuarios</Title>
-                                    <form onSubmit={ handleOnSubmit}>
+                                    <form onSubmit={handleOnSubmit}>
                                         <div className="col s12">
 
                                             <div className="row">
@@ -75,7 +76,7 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
 
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input type="number"
+                                                    <input type="text"
                                                         id="autocomplete-input"
                                                         className="autocomplete"
                                                         name='rDni'
@@ -129,9 +130,9 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
                                                 onChange={handleInputChange}
                                             >
                                                 <option>Elige una opción</option>
-                                                <option value="femenino">Femenino</option>
-                                                <option value="masculino">Masculino</option>
-                                                <option value="otro">Otro</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Otro">Otro</option>
                                             </select>
 
                                             <label for="autocomplete-input">Tipo de usuario</label>
@@ -143,7 +144,7 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
                                                 <option>Elige una opción</option>
                                                 <option value="profesor">Profesor</option>
                                                 <option value="alumno">Alumno</option>
-                                                <option value="admin">Administrador</option>
+                                                <option value="administrador">Administrador</option>
                                             </select>
 
                                         </div>
@@ -168,9 +169,5 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
     )
 }
 
-const mapStateToProps = state => ({
 
-    user: state.register.user
-
-})
-export default connect(mapStateToProps, {fetchRegisterUser})(RegistroUsuario);
+export default  RegistroUsuario;

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import imagenLogo from '../../assets/logo.png';
 import { useForm } from '../../hooks/useForm';
-import { connect } from 'react-redux';
 import { login } from '../../redux/actions/auth';
-
+import { useDispatch } from 'react-redux';
 const Banner = styled.div`
     background-color: #673ab7;
     height: 370px;
@@ -17,10 +16,13 @@ const Title = styled.h1`
     color: white;
     font-size: 50px;
 `;
-const Login = ({login}) => {
+
+const Login = () => {
+
+    const dispatch = useDispatch();
 
     const [formLoginValues, handleInputChange] = useForm({
-        loginEmail: 'miliserrrano@gmail.com',
+        loginEmail: 'gonz@gmail.com',
         loginPassword: 'hola123'
     });
 
@@ -28,7 +30,7 @@ const Login = ({login}) => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
-        login(loginEmail, loginPassword)
+        dispatch(login(loginEmail, loginPassword));
     }
 
     return (
@@ -62,7 +64,7 @@ const Login = ({login}) => {
                                                 onChange={handleInputChange}
                                                 className="form-control"
                                             />
-                                            <label className="form-label" for="form3Example3" style={{'fontFamily': 'Candara'}}>Email</label>
+                                            <label className="form-label"  style={{'fontFamily': 'Candara'}}>Email</label>
                                         </div>
 
                                         <div className="form-outline mb-4" style={{ 'textAlign': 'left', 'alignItems': 'left' }}>
@@ -72,7 +74,7 @@ const Login = ({login}) => {
                                                 onChange={handleInputChange} 
                                                 className="form-control"
                                             />
-                                            <label className="form-label" for="form3Example4" style={{'fontFamily': 'Candara'}}>Contraseña</label>
+                                            <label className="form-label"  style={{'fontFamily': 'Candara'}}>Contraseña</label>
                                         </div>
 
                                         <div style={{ 'justifyContent': 'center', 'display': 'flex'}}>
@@ -86,16 +88,11 @@ const Login = ({login}) => {
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </section>
         </>
     )
 }
 
-const mapStateToProps = state => ({
-    autenticado: state.login.data
-})
 
-export default connect(mapStateToProps, { login })(Login);
+export default Login;
