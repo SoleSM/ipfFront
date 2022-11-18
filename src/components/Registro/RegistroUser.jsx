@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useForm } from '../../hooks/useForm';
 import { connect } from 'react-redux';
 import { fetchRegisterUser } from '../../redux/actions/register';
+import { useDispatch } from 'react-redux'
 
 const Title = styled.h3`
     font-family: Candara;
@@ -14,7 +15,11 @@ const Botones = styled.div`
     margin-top: 10%;
 `;
 
+
+
 const RegistroUsuario = ({fetchRegisterUser}) => {
+
+    const dispatch = useDispatch()
 
     const [formRegisterValues, handleInputChange] = useForm({
         rNombre: "",
@@ -27,12 +32,14 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
         rTipoUser: ""
     });
 
+   
     const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser } = formRegisterValues;
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
         console.log(formRegisterValues)
-        fetchRegisterUser(rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser)
+        dispatch(fetchRegisterUser(rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser))
+       
     }
 
     return (

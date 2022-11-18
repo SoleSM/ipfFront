@@ -37,8 +37,6 @@ export const login = (email, password) => {
         dispatch(fetchUsuarioLoading())
         const body = await res.json()
 
-        
-        
         if(body.ok){
 
             //graba el token con el token que viene en el body

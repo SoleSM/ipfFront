@@ -19,11 +19,12 @@ export const fetchRegFail = (error) => {
     }
 }
 
-export const fetchRegisterUser = ( nombre, apellido, dni, fechaNacimiento, email, password, genero, tipoUser ) => {
+export const fetchRegisterUser = (nombre, apellido, numeroDni, fechaDeNacimiento, email, password, sexo, tipo) => {
 
     return async(dispatch) => {
 
-        const res = await fetchSinToken('user/newUser', {nombre, apellido, dni, fechaNacimiento, email, password, genero, tipoUser}, 'POST');
+        console.log("datos", numeroDni)
+        const res = await fetchSinToken('user/newUser', {nombre, apellido, numeroDni, fechaDeNacimiento, email, password, sexo, tipo}, 'POST');
         const body = await res.json();
 
         console.log("body",body)
