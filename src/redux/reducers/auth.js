@@ -9,7 +9,7 @@ const initialState = {
     cargando: false,
     autenticado: false,
     user: {},
-    error: ""
+    error: null
 }
 
 
@@ -25,7 +25,7 @@ const LoginReducer = (state = initialState, action) => {
                 cargando: false,
                 autenticado: true,
                 user: payload,
-                error: ""
+                error: null
             }
         case LOGIN_FAIL:
             return {
@@ -49,7 +49,7 @@ const LoginReducer = (state = initialState, action) => {
                 cargando: false,
                 autenticado: false,
                 user: {},
-                error: ""
+                error: null
             }
         default: return state;
     }
