@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { useForm } from '../../hooks/useForm';
 import { fetchRegisterUser } from '../../redux/actions/register';
-<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
-=======
-import { useDispatch } from 'react-redux'
->>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
 
 const Title = styled.h3`
     font-family: Candara;
@@ -18,50 +14,31 @@ const Botones = styled.div`
     margin-top: 10%;
 `;
 
-<<<<<<< HEAD
 const RegistroUsuario = () => {
-
-    const dispatch = useDispatch();
-=======
-
-
-const RegistroUsuario = ({fetchRegisterUser}) => {
->>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
 
     const dispatch = useDispatch()
 
     const [formRegisterValues, handleInputChange] = useForm({
-        rNombre: "Soledad",
-        rApellido: "Serrano",
-        rDni: "45325",
+        rNombre: "milagros",
+        rApellido: "soledad",
+        rDni: "44876876",
         rGenero: "Femenino",
         rFechaNacimiento: "",
-        rEmail: "miliss@gmail.com",
-        rPassword: "qwerty12345",
+        rEmail: "miliserrrrrano@gmail.com",
+        rPassword: "hola123",
         rTipoUser: "alumno"
     });
 
-<<<<<<< HEAD
-    const { rNombre, rApellido, rDni, rGenero, rFechaNacimiento, rEmail, rPassword, rTipoUser } = formRegisterValues;
-
-    const handleOnSubmit = async (e) => {
-        e.preventDefault()
-        dispatch(fetchRegisterUser(rNombre, rApellido, rDni, rGenero, rFechaNacimiento, rEmail, rPassword, rTipoUser))
-=======
-   
     const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser } = formRegisterValues;
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
         console.log(formRegisterValues)
-        dispatch(fetchRegisterUser(rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser))
-       
->>>>>>> f877b3bf2d5613606c4ef6a49996fc4c71a91c75
+        dispatch(fetchRegisterUser( rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser))
     }
 
     return (
         <>
-
             <section className="vh-100 deep-purple">
                 <div className="container py-5 h-100">
                     <div className="row justify-content-center align-items-center h-100">
@@ -179,7 +156,6 @@ const RegistroUsuario = ({fetchRegisterUser}) => {
                                         <button className="btn waves-effect amber col s6" type="submit" name="action" style={{ 'width': '49%', 'marginTop': '5%' }}>Limpiar Campos
                                             <i className="material-icons right">delete</i>
                                         </button>
-
                                     </form>
                                 </div>
                             </div>

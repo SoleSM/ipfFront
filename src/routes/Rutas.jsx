@@ -8,8 +8,20 @@ import Login from '../components/auth/Login';
 import LandingPage from '../components/landing/landingPage';
 import LandingLogueado from '../components/landing/landingLogueado';
 import RegistroUsuario from '../components/Registro/RegistroUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { startChecking } from '../redux/actions/auth';
+
 
 const Rutas = () => {
+
+    const dispatch = useDispatch();
+
+   
+    useEffect(() => {
+        dispatch(startChecking());
+    }, [dispatch])
+
     return (
         <Router>
             <Routes>

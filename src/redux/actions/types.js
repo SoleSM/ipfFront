@@ -1,7 +1,7 @@
 export const REGISTER_OKAY = 'REGISTER_OKAY'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 
-export const USER_LOADING = 'USER_LOADING'
+export const CHECKING_FINISH = 'CHECKING_FINISH'
 export const LOGIN_OKAY = 'LOGIN_OKAY'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'

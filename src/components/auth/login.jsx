@@ -3,6 +3,7 @@ import imagenLogo from '../../assets/logo.png';
 import { useForm } from '../../hooks/useForm';
 import { login } from '../../redux/actions/auth';
 import { useDispatch } from 'react-redux';
+
 const Banner = styled.div`
     background-color: #673ab7;
     height: 370px;
@@ -22,8 +23,8 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const [formLoginValues, handleInputChange] = useForm({
-        loginEmail: 'gonz@gmail.com',
-        loginPassword: 'hola123'
+        loginEmail: '',
+        loginPassword: ''
     });
 
     const { loginEmail, loginPassword } = formLoginValues;

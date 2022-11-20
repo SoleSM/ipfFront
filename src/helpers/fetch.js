@@ -19,13 +19,14 @@ const fetchSinToken = (endpoint, data, method = "GET") => {
 const fetchConToken = (endpoint, data, method = 'GET') => {
 
     const url = `${baseUrl}/${endpoint}`;
+    //Revisar el token del localstorage 
     const token = localStorage.getItem('token') || '';
 
     if (method === 'GET') {
         return fetch(url, {
             method,
             headers: {
-                'x-token': token
+                'token': token
             }
         });
     } else {
@@ -33,7 +34,7 @@ const fetchConToken = (endpoint, data, method = 'GET') => {
             method,
             headers: {
                 'Content-type': 'application/json',
-                'x-token': token
+                'token': token
             },
             body: JSON.stringify(data)
         });

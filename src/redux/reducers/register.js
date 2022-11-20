@@ -15,7 +15,6 @@ const RegisterReducer = (state = initialState, action) => {
 
     switch(type){
         case REGISTER_OKAY:
-           console.log("etate",state)
             return{
                 ...state,
                 user: payload,
