@@ -2,6 +2,7 @@ export const REGISTER_OKAY = 'REGISTER_OKAY'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 
 export const CHECKING_FINISH = 'CHECKING_FINISH'
+export const FETCH_LOGIN = 'FETCH_LOGIN'
 export const LOGIN_OKAY = 'LOGIN_OKAY'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'

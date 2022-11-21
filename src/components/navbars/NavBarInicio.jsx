@@ -38,8 +38,7 @@ export const NavBarInicio = () => {
                 <div class="nav-wrapper deep-purple">
                     <a><i class="large material-icons" style={{ 'fontSize': '50px', 'paddingLeft': '2%' }}>school</i></a>
                     <ul class="right" style={{ 'marginTop': '-4.5%' }}>
-                        <li><a class="waves-effect waves-light btn" href="/RegistroUsuarios" style={{ 'borderRadius': '10px' }}>REGISTRO</a></li>
-                        <li><a class="waves-effect waves-light btn" href="/InicioSesion" style={{ 'borderRadius': '10px' }}>INICIO DE SESION<i class="material-icons right">cloud</i></a></li>
+                        <li><a class="waves-effect waves-light btn" href="/auth/login" style={{ 'borderRadius': '10px' }}>INICIO DE SESION<i class="material-icons right">cloud</i></a></li>
                     </ul>
                 </div>
             </nav>

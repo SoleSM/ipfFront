@@ -4,16 +4,16 @@ import {
     REGISTER_OKAY
 } from './types'
 import Swal from 'sweetalert2'
-import { fetchLoginOkay } from './auth'
+import { loginOkay } from './auth'
 
-export const fetchRegOkay = (user) => {
+export const registerOkay = (user) => {
     return {
         type: REGISTER_OKAY,
         payload: user
     }
 }
 
-export const fetchRegFail = (error) => {
+export const registerFail = (error) => {
     return {
         type: REGISTER_FAIL,
         payload: error
@@ -32,15 +32,16 @@ export const fetchRegisterUser = (nombre, apellido, numeroDni, fechaDeNacimiento
             localStorage.setItem("token", body.token);
             localStorage.setItem("token-init-date", new Date().getTime());
       
-            dispatch(fetchLoginOkay({
+            dispatch(loginOkay({
                 uid: body.usuarioRegistrado.uid,
                 nombre: body.usuarioRegistrado.nombre
             }));
+            dispatch(registerOkay({usuario: body.usuarioRegistrado}))
             return Swal.fire({icon: 'success', title: `${body.msg}`, showConfirmButton: false, timer: 1200})
 
 
         } else {
-            dispatch(fetchRegFail(body.msg))
+            dispatch(registerFail(body.msg))
             return Swal.fire({icon: 'error', title:`${body.msg}`, showConfirmButton: false, timer: 1500 })
 
         }

@@ -2,7 +2,8 @@ import {
     LOGIN_OKAY,
     LOGIN_FAIL,
     LOGOUT,
-    CHECKING_FINISH
+    CHECKING_FINISH,
+    FETCH_LOGIN
 } from '../actions/types';
 
 const initialState = {
@@ -18,10 +19,14 @@ const LoginReducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+        case FETCH_LOGIN:
+            return{
+                ...state,
+                cargando: true
+            }
         case LOGIN_OKAY:
             return {
                 ...state,
-                ...payload,
                 cargando: false,
                 autenticado: true,
                 user: payload,
@@ -30,26 +35,18 @@ const LoginReducer = (state = initialState, action) => {
         case LOGIN_FAIL:
             return {
                 ...state,
-                ...payload,
-                cargando: false,
-                autenticado: false,
-                user: {},
                 error: payload
-            }
-        case CHECKING_FINISH:
-            return {
-                ...state,
-                ...payload,
-                cargando: false
             }
         case LOGOUT:
             return {
                 ...state,
-                ...payload,
-                cargando: false,
                 autenticado: false,
-                user: {},
-                error: null
+                user: {}
+            }
+        case CHECKING_FINISH:
+            return{
+                ...state,
+                cargando: false
             }
         default: return state;
     }
