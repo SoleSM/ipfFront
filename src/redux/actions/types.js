@@ -7,15 +7,19 @@ export const LOGIN_OKAY = 'LOGIN_OKAY'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'
 
-
 export const GET_USERS = 'GET_USERS'
 export const GET_USER = 'GET_USER'
 export const PUT_USER = 'PUT_USER'
 export const DELETE_USER = 'DELETE_USER'
+export const REQUEST_FAIL = 'REQUEST_FAIL'
+
+export const FETCH_PUBLICACIONES = 'FETCH_PUBLICACIONES'
 export const GET_PUBLICACIONES = 'GET_PUBLICACIONES'
 export const POST_PUBLICACION = 'POST_PUBLICACION'
 export const PUT_PUBLICACION = 'PUT_PUBLICACION'
 export const DELETE_PUBLICACION = 'DELETE_PUBLICACION'
+
+
 export const GET_MATERIA = 'GET_MATERIA'
 export const POST_MATERIA = 'POST_MATERIA'
 export const PUT_MATERIA = 'PUT_MATERIA'

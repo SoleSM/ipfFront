@@ -14,13 +14,14 @@ import { useEffect } from 'react';
 import { startChecking } from '../redux/actions/auth';
 import PublicRoutes from './RutasPublicas';
 import PrivateRoutes from './RutasPrivadas';
+import Publicaciones from '../components/publicaciones/publicaciones';
 
 const Rutas = () => {
 
-
-    const { uid } = useSelector(state => state.login)
+    const { uid } = useSelector(state => state.login.user)
     const dispatch = useDispatch();
 
+    console.log("uid del rutas", uid)
     useEffect(() => {
         dispatch(startChecking());
     }, [dispatch])
@@ -49,29 +50,14 @@ const Rutas = () => {
                             <Routes>
                                 <Route path='/home' element={<LandingLogueado />} />
                                 <Route path='/registroUsuarios' element={<RegistroUsuario />} />
+                                <Route path='/publicaciones' element={<Publicaciones/>} />
                             </Routes>
                         </PrivateRoutes>
                     }
                 />
             </Routes>
         </BrowserRouter>
-        // autenticado 
-        //     ? 
-        //     <BrowserRouter>
-        //         <Routes>
-        //             <Route path='/Home' element={<LandingLogueado />} />
-        //             <Route path='/RegistroUsuarios' element={<RegistroUsuario />} />
-        //         </Routes>
-        //     </BrowserRouter>
-        //     :
-        //     <BrowserRouter>
-        //         <Routes>
-        //             <Route path='/InicioSesion' element={<Login />} />
-        //             <Route path='/Landing' element={<LandingPage />} />
-        //             <Route path='*' element={<LandingPage />} />
-        //         </Routes>
-        //     </BrowserRouter>
-
+   
     )
 
 

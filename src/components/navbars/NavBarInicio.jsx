@@ -46,3 +46,17 @@ export const NavBarInicio = () => {
     )
 }
 
+export const NavbarAtras = () => {
+    return (
+        <>
+            <nav>
+                <div class="nav-wrapper deep-purple">
+                    <a><i class="large material-icons" style={{ 'fontSize': '50px', 'paddingLeft': '2%' }}>school</i></a>
+                    <ul class="right" style={{ 'marginTop': '-4.5%' }}>
+                        <Link type="button" className="btn btn-outline-primary me-md-2" to={-1}><MdArrowBackIos color={props.colorIcon}/></Link>
+                    </ul>
+                </div>
+            </nav>
+        </>
+    )
+}

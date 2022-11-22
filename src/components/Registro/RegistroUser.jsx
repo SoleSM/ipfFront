@@ -19,14 +19,14 @@ const RegistroUsuario = () => {
     const dispatch = useDispatch()
 
     const [formRegisterValues, handleInputChange] = useForm({
-        rNombre: "milagros",
-        rApellido: "soledad",
-        rDni: "44876876",
-        rGenero: "Femenino",
+        rNombre: "",
+        rApellido: "",
+        rDni: "",
+        rGenero: "",
         rFechaNacimiento: "",
-        rEmail: "miliserrrrrano@gmail.com",
-        rPassword: "hola123",
-        rTipoUser: "alumno"
+        rEmail: "",
+        rPassword: "",
+        rTipoUser: ""
     });
 
     const { rNombre, rApellido, rDni, rFechaNacimiento, rEmail, rPassword, rGenero, rTipoUser } = formRegisterValues;

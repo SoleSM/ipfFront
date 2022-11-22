@@ -21,7 +21,7 @@ export const fetch_login = () => {
 export const loginOkay = (user) => {
     return {
         type: LOGIN_OKAY,
-        payload:{ user}
+        payload: user
         
     }
 }
@@ -30,7 +30,7 @@ export const loginOkay = (user) => {
 export const loginError = (error) => {
     return {
         type: LOGIN_FAIL,
-        payload: {error}
+        payload: error
         
     }
 }

@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import imagenLogo from '../../assets/logo.png';
 import { useForm } from '../../hooks/useForm';
 import { login } from '../../redux/actions/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 
 const Banner = styled.div`
     background-color: #673ab7;
@@ -22,11 +21,8 @@ const Title = styled.h1`
 
 const Login = () => {
 
- 
-    const {uid} = useSelector(state => state.login.user)
     const dispatch = useDispatch();
-const navigate = useNavigate();
-    
+
     const [formLoginValues, handleInputChange] = useForm({
         loginEmail: '',
         loginPassword: ''
@@ -39,11 +35,7 @@ const navigate = useNavigate();
         dispatch(login(loginEmail, loginPassword));
     }
 
- useEffect(()=> {
-    if(uid){
-        navigate('/home')
-    }
- }, [uid])
+
     return (
         <>
             <section className="text-center">

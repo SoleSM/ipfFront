@@ -4,7 +4,6 @@ import {
     REGISTER_OKAY
 } from './types'
 import Swal from 'sweetalert2'
-import { loginOkay } from './auth'
 
 export const registerOkay = (user) => {
     return {
@@ -28,18 +27,8 @@ export const fetchRegisterUser = (nombre, apellido, numeroDni, fechaDeNacimiento
         const body = await res.json();
         
         if (body.ok) {
-
-            localStorage.setItem("token", body.token);
-            localStorage.setItem("token-init-date", new Date().getTime());
-      
-            dispatch(loginOkay({
-                uid: body.usuarioRegistrado.uid,
-                nombre: body.usuarioRegistrado.nombre
-            }));
             dispatch(registerOkay({usuario: body.usuarioRegistrado}))
             return Swal.fire({icon: 'success', title: `${body.msg}`, showConfirmButton: false, timer: 1200})
-
-
         } else {
             dispatch(registerFail(body.msg))
             return Swal.fire({icon: 'error', title:`${body.msg}`, showConfirmButton: false, timer: 1500 })
